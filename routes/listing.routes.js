@@ -1,0 +1,219 @@
+const {
+  getListing,
+  getVisibleListing,
+  createListing,
+  updateListings,
+  deleteListing,
+  getListingDetails,
+} = require("../controller/listing.controller");
+const adminMiddleware = require("../middleware/admin.middleware");
+const router = require("express").Router();
+
+/**
+ * @swagger
+ * tags:
+ *   name: Listings
+ *   description: API endpoints for managing listings
+ */
+
+/**
+ * @swagger
+ * /api/listings:
+ *   get:
+ *     summary: Get all visible listings
+ *     description: Retrieve a list of visible listings.
+ *     tags: [Listings]
+ *     responses:
+ *       200:
+ *         description: A list of visible listings
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 listings:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/", getVisibleListing);
+
+/**
+ * @swagger
+ * /api/listings/all:
+ *   get:
+ *     summary: Get all listings (Admin only)
+ *     description: Retrieve a list of all listings, including hidden ones.
+ *     tags: [Listings]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: A list of all listings
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 listings:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *       403:
+ *         description: Unauthorized - Admin access required
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/all", adminMiddleware, getListing);
+
+/**
+ * @swagger
+ * /api/listings/{id}:
+ *   get:
+ *     summary: Get listing details
+ *     description: Retrieve details of a specific listing by ID.
+ *     tags: [Listings]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The listing ID
+ *     responses:
+ *       200:
+ *         description: Listing details retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 listing:
+ *                   type: object
+ *       404:
+ *         description: Listing not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/:id", getListingDetails);
+
+/**
+ * @swagger
+ * /api/listings/create:
+ *   post:
+ *     summary: Create a new listing (Admin only)
+ *     description: Adds a new listing to the database.
+ *     tags: [Listings]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - description
+ *               - price
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "New Listing"
+ *               description:
+ *                 type: string
+ *                 example: "This is a sample listing description."
+ *               price:
+ *                 type: number
+ *                 example: 199.99
+ *     responses:
+ *       201:
+ *         description: Listing created successfully
+ *       400:
+ *         description: Bad Request - Missing required fields
+ *       403:
+ *         description: Unauthorized - Admin access required
+ *       500:
+ *         description: Internal Server Error
+ */
+router.post("/create", adminMiddleware, createListing);
+
+/**
+ * @swagger
+ * /api/listings/update/{id}:
+ *   put:
+ *     summary: Update a listing (Admin only)
+ *     description: Update details of a specific listing by ID.
+ *     tags: [Listings]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The listing ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: "Updated Listing Title"
+ *               description:
+ *                 type: string
+ *                 example: "Updated listing description."
+ *               price:
+ *                 type: number
+ *                 example: 249.99
+ *     responses:
+ *       200:
+ *         description: Listing updated successfully
+ *       400:
+ *         description: Bad Request - Invalid ID or missing fields
+ *       403:
+ *         description: Unauthorized - Admin access required
+ *       404:
+ *         description: Listing not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.put("/update/:id", adminMiddleware, updateListings);
+
+/**
+ * @swagger
+ * /api/listings/delete/{id}:
+ *   delete:
+ *     summary: Delete a listing (Admin only)
+ *     description: Remove a specific listing by ID.
+ *     tags: [Listings]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The listing ID
+ *     responses:
+ *       200:
+ *         description: Listing deleted successfully
+ *       400:
+ *         description: Bad Request - Invalid ID
+ *       403:
+ *         description: Unauthorized - Admin access required
+ *       404:
+ *         description: Listing not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.delete("/delete/:id", adminMiddleware, deleteListing);
+
+module.exports = router;

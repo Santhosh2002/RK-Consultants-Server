@@ -1,0 +1,5 @@
+{"level":"warn","message":"Login failed for username: admin - User not found","timestamp":"2025-02-08T04:06:04.845Z"}
+{"level":"info","message":"User santhosh created successfully","timestamp":"2025-02-08T04:15:36.136Z"}
+{"level":"info","message":"User santhosh logged in successfully","timestamp":"2025-02-08T04:15:48.767Z"}
+{"level":"info","message":"User Gaurav created successfully","timestamp":"2025-02-08T05:39:35.884Z"}
+{"level":"info","message":"User Gaurav logged in successfully","timestamp":"2025-02-08T05:39:45.666Z"}
