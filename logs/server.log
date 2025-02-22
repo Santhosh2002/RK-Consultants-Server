@@ -104,3 +104,11 @@
 2025-02-22T10:51:29.800Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
 2025-02-22T10:51:29.891Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
 2025-02-22T10:51:30.054Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T10:58:03.635Z [INFO]: API CALL: GET / - Body: {} - Response Sent: 200
+2025-02-22T10:58:15.046Z [INFO]: API CALL: GET /api-docs - Body: {} - Response Sent: 200
+2025-02-22T10:58:16.858Z [INFO]: API CALL: GET /api-docs/ - Body: {} - Response Sent: 200
+2025-02-22T10:58:19.735Z [INFO]: API CALL: GET /api-docs/swagger-ui-bundle.js - Body: {} - Response Sent: 200
+2025-02-22T10:58:19.808Z [INFO]: API CALL: GET /api-docs/swagger-ui-standalone-preset.js - Body: {} - Response Sent: 200
+2025-02-22T10:58:19.947Z [INFO]: API CALL: GET /api-docs/swagger-ui-init.js - Body: {} - Response Sent: 200
+2025-02-22T10:58:20.000Z [INFO]: API CALL: GET /api-docs/swagger-ui.css - Body: {} - Response Sent: 200
+2025-02-22T10:58:23.056Z [INFO]: API CALL: GET /api-docs/favicon-32x32.png - Body: {} - Response Sent: 200
