@@ -1,30 +1,22 @@
 const Visitor = require("../model/visitors.model");
 
+exports.addVisitor = async (req, res) => {
+  try {
+    await new Visitor().save(); // Save a new visitor entry
+    const total = await Visitor.countDocuments(); // Get the total count directly
+    res.status(201).json({ total });
+  } catch (error) {
+    console.error(`Error adding visitor: ${error.message}`);
+    res.status(500).json({ message: error.message });
+  }
+};
 
-const addVisitor = async(req,res) =>{
-    try{
-        const newVisitor = new Visitor({});
-        await newVisitor.save(); 
-        const total = await Visitor.find(); 
-        res.send({total : total}); 
-    }
-    catch(err){
-        console.log(err); 
-    }
-}
-
-const getVisitors = async(req,res) =>{
-    try {
-        const visitors = await Visitor.find(); 
-        const total = visitors.length ;
-        res.status(200).send({total: total,visitors : visitors}); 
-    }
-    catch(err){
-        res.status(500).send({message:err});
-    }
-}
-
-module.exports   = {
-    getVisitors,
-    addVisitor
-}; 
+exports.getVisitors = async (req, res) => {
+  try {
+    const visitors = await Visitor.find();
+    res.status(200).json({ total: visitors.length, visitors });
+  } catch (error) {
+    console.error(`Error fetching visitors: ${error.message}`);
+    res.status(500).json({ message: error.message });
+  }
+};

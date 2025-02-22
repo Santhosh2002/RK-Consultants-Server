@@ -16,6 +16,14 @@ const adminMiddleware = require("../middleware/admin.middleware");
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     General:
+ *       $ref: "#/components/schemas/General"
+ */
+
+/**
+ * @swagger
  * /api/general:
  *   get:
  *     summary: Get general settings
@@ -30,7 +38,7 @@ const adminMiddleware = require("../middleware/admin.middleware");
  *               type: object
  *               properties:
  *                 data:
- *                   type: object
+ *                   $ref: "#/components/schemas/General"
  *       500:
  *         description: Internal Server Error
  */
@@ -50,17 +58,7 @@ router.get("/", getGeneral);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - name
- *               - value
- *             properties:
- *               name:
- *                 type: string
- *                 example: "site_name"
- *               value:
- *                 type: string
- *                 example: "My Website"
+ *             $ref: "#/components/schemas/General"
  *     responses:
  *       201:
  *         description: General settings created successfully
@@ -72,7 +70,7 @@ router.get("/", getGeneral);
  *                 message:
  *                   type: string
  *                 data:
- *                   type: object
+ *                   $ref: "#/components/schemas/General"
  *       400:
  *         description: Bad Request - Missing required fields
  *       500:
@@ -83,7 +81,7 @@ router.post("/create", adminMiddleware, createGeneral);
 /**
  * @swagger
  * /api/general/{id}:
- *   post:
+ *   put:
  *     summary: Update general settings
  *     description: Update general settings by ID. Only accessible by an admin.
  *     tags: [General]
@@ -101,14 +99,7 @@ router.post("/create", adminMiddleware, createGeneral);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "site_name"
- *               value:
- *                 type: string
- *                 example: "Updated Website Name"
+ *             $ref: "#/components/schemas/General"
  *     responses:
  *       200:
  *         description: General settings updated successfully
@@ -120,7 +111,7 @@ router.post("/create", adminMiddleware, createGeneral);
  *                 message:
  *                   type: string
  *                 data:
- *                   type: object
+ *                   $ref: "#/components/schemas/General"
  *       400:
  *         description: Bad Request - Missing ID
  *       404:
@@ -128,6 +119,6 @@ router.post("/create", adminMiddleware, createGeneral);
  *       500:
  *         description: Internal Server Error
  */
-router.post("/:id", adminMiddleware, updateGeneral);
+router.put("/:id", adminMiddleware, updateGeneral);
 
 module.exports = router;

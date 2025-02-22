@@ -14,7 +14,7 @@ const router = express.Router();
  * /api/mail/send:
  *   post:
  *     summary: Send an email
- *     description: Sends an email using the configured mail service.
+ *     description: Sends an email using the configured SendGrid mail service.
  *     tags: [Mail]
  *     requestBody:
  *       required: true
@@ -49,7 +49,7 @@ const router = express.Router();
  *                   type: string
  *                   example: "Email sent successfully"
  *       400:
- *         description: Bad Request - Missing required fields
+ *         description: Bad Request - Missing required fields or invalid email format
  *       500:
  *         description: Internal Server Error
  */

@@ -14,6 +14,14 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Payment:
+ *       $ref: "#/components/schemas/Payment"
+ */
+
+/**
+ * @swagger
  * /api/payment/create-order:
  *   post:
  *     summary: Create a new payment order
@@ -24,28 +32,9 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               amount:
- *                 type: number
- *                 example: 500
- *                 description: "Amount in INR (before conversion to paise)"
- *               currency:
- *                 type: string
- *                 example: "INR"
- *                 description: "Currency code (default is INR)"
- *               clientId:
- *                 type: string
- *                 example: "64b4fc2d3fa74b6dbd3c9162"
- *                 description: "Client ID for tracking the payment"
- *               services:
- *                 type: array
- *                 items:
- *                   type: string
- *                 example: ["Service1", "Service2"]
- *                 description: "List of services associated with the order"
+ *             $ref: "#/components/schemas/Payment"
  *     responses:
- *       200:
+ *       201:
  *         description: Payment order created successfully
  *         content:
  *           application/json:
@@ -56,21 +45,7 @@ const router = express.Router();
  *                   type: boolean
  *                   example: true
  *                 order:
- *                   type: object
- *                   properties:
- *                     id:
- *                       type: string
- *                       example: "order_HMZ4A1EjKz5ZZ1"
- *                     amount:
- *                       type: integer
- *                       example: 50000
- *                       description: "Amount in paise"
- *                     currency:
- *                       type: string
- *                       example: "INR"
- *                     receipt:
- *                       type: string
- *                       example: "receipt_1708290345"
+ *                   $ref: "#/components/schemas/Payment"
  *       500:
  *         description: Internal Server Error
  *         content:
@@ -85,18 +60,18 @@ const router = express.Router();
  *                   type: string
  *                   example: "Payment Order Creation Failed"
  *                 error:
- *                   type: object
- *                   example: { "message": "Some error occurred" }
+ *                   type: string
+ *                   example: "Internal Server Error"
  */
 router.post("/create-order", createOrders);
+
 /**
  * @swagger
  * /api/payment/verify:
  *   post:
  *     summary: Verify Razorpay Payment
  *     description: Verifies the Razorpay payment using HMAC signature and updates the payment status.
- *     tags:
- *       - Payments
+ *     tags: [Payments]
  *     requestBody:
  *       required: true
  *       content:

@@ -16,6 +16,14 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Client:
+ *       $ref: "#/components/schemas/Client"
+ */
+
+/**
+ * @swagger
  * /api/clients/createClient:
  *   post:
  *     summary: Create a new client
@@ -28,24 +36,7 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - name
- *             properties:
- *               name:
- *                 type: string
- *                 example: "John Doe"
- *               email:
- *                 type: string
- *                 format: email
- *                 example: "john@example.com"
- *               status:
- *                 type: string
- *                 enum: [active, inactive]
- *                 example: "active"
- *               image:
- *                 type: string
- *                 example: "https://example.com/profile.jpg"
+ *             $ref: "#/components/schemas/Client"
  *     responses:
  *       201:
  *         description: Client created successfully
@@ -57,7 +48,7 @@ const router = express.Router();
  *                 message:
  *                   type: string
  *                 client:
- *                   type: object
+ *                   $ref: "#/components/schemas/Client"
  *       400:
  *         description: Bad Request - Missing required fields
  *       500:
@@ -83,7 +74,7 @@ router.post("/createClient", adminMiddleware, createClient);
  *                 clients:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Client"
  *       500:
  *         description: Internal Server Error
  */
@@ -92,7 +83,7 @@ router.get("/", getAllClients);
 /**
  * @swagger
  * /api/clients/{id}:
- *   post:
+ *   put:
  *     summary: Update a client
  *     description: Update client details by ID. Only accessible by an admin.
  *     tags: [Clients]
@@ -110,22 +101,7 @@ router.get("/", getAllClients);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "John Doe"
- *               email:
- *                 type: string
- *                 format: email
- *                 example: "john@example.com"
- *               status:
- *                 type: string
- *                 enum: [active, inactive]
- *                 example: "inactive"
- *               image:
- *                 type: string
- *                 example: "https://example.com/profile.jpg"
+ *             $ref: "#/components/schemas/Client"
  *     responses:
  *       200:
  *         description: Client updated successfully
@@ -137,7 +113,7 @@ router.get("/", getAllClients);
  *                 message:
  *                   type: string
  *                 client:
- *                   type: object
+ *                   $ref: "#/components/schemas/Client"
  *       400:
  *         description: Bad Request - Missing client ID
  *       404:
@@ -145,6 +121,6 @@ router.get("/", getAllClients);
  *       500:
  *         description: Internal Server Error
  */
-router.post("/:id", adminMiddleware, updateClient);
+router.put("/:id", adminMiddleware, updateClient);
 
 module.exports = router;

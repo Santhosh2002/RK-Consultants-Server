@@ -1,51 +1,38 @@
-const Stats = require('../model/stats.model');
+const Stats = require("../model/stats.model");
 
 exports.getStats = async (req, res) => {
-    try {
-        const stats = await Stats.findOne();
-        res.status(200).json({stats});
-    } catch (error) {
-        res.status(500).json({message: error.message});
+  try {
+    const stats = await Stats.findOne();
+    if (!stats) {
+      return res.status(404).json({ message: "Stats not found" });
     }
-}
-exports.updateStats = async (req, res) => {
-    const {id} = req.params;
-    const {happyClients,projects,daysOfWork} = req.body;
-    if(!id){
-        return res.status(400).json({message: "Stats ID is required"});
-    }
-    try {
-        const stats = await Stats.findById(id);
-        if(!stats){
-            return res.status(404).json({message: "Stats not found"});
-        }
-        if(!stats){
-            return res.status(404).json({message: "Stats not found"});
-        }
-        stats.happyClients = happyClients || stats.happyClients;
-        stats.projects = projects || stats.projects;
-        stats.daysOfWork = daysOfWork || stats.daysOfWork;
-        await stats.save();
-        res.status(200).json({message: "Stats updated successfully", stats});
-    }
-    catch (error) {
-        res.status(500).json({message: error.message});
-    }
-}
+    res.status(200).json({ stats });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createStats = async (req, res) => {
-    const {happyClients,projects,daysOfWork} = req.body;
-    if(!happyClients || !projects || !daysOfWork){
-        return res.status(400).json({message: "All fields are required"});
+  try {
+    const stats = new Stats(req.body); // Directly using req.body for input
+    await stats.save();
+    res.status(201).json({ message: "Stats created successfully", stats });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateStats = async (req, res) => {
+  try {
+    const stats = await Stats.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!stats) {
+      return res.status(404).json({ message: "Stats not found" });
     }
-    try {
-        const stats = new Stats({
-            happyClients,
-            projects,
-            daysOfWork,
-        });
-        await stats.save();
-        res.status(201).json(stats);
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-}
+    res.status(200).json({ message: "Stats updated successfully", stats });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

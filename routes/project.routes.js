@@ -18,6 +18,38 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Project:
+ *       type: object
+ *       required:
+ *         - name
+ *         - description
+ *         - startDate
+ *         - endDate
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Name of the project
+ *           example: "New Project"
+ *         description:
+ *           type: string
+ *           description: Project description
+ *           example: "A large-scale commercial construction project."
+ *         startDate:
+ *           type: string
+ *           format: date
+ *           description: Start date of the project
+ *           example: "2025-02-15"
+ *         endDate:
+ *           type: string
+ *           format: date
+ *           description: Expected end date of the project
+ *           example: "2025-06-30"
+ */
+
+/**
+ * @swagger
  * /api/projects/create:
  *   post:
  *     summary: Create a new project (Admin only)
@@ -30,27 +62,7 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - name
- *               - description
- *               - startDate
- *               - endDate
- *             properties:
- *               name:
- *                 type: string
- *                 example: "New Project"
- *               description:
- *                 type: string
- *                 example: "Project description goes here."
- *               startDate:
- *                 type: string
- *                 format: date
- *                 example: "2025-02-15"
- *               endDate:
- *                 type: string
- *                 format: date
- *                 example: "2025-06-30"
+ *             $ref: "#/components/schemas/Project"
  *     responses:
  *       201:
  *         description: Project created successfully
@@ -81,7 +93,7 @@ router.post("/create", adminMiddleware, createProject);
  *                 projects:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Project"
  *       500:
  *         description: Internal Server Error
  */
@@ -107,10 +119,7 @@ router.get("/", getAllProjects);
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 project:
- *                   type: object
+ *               $ref: "#/components/schemas/Project"
  *       404:
  *         description: Project not found
  *       500:
@@ -121,7 +130,7 @@ router.get("/:id", getProject);
 /**
  * @swagger
  * /api/projects/{id}:
- *   post:
+ *   put:
  *     summary: Update a project (Admin only)
  *     description: Update details of a specific project by ID.
  *     tags: [Projects]
@@ -139,22 +148,7 @@ router.get("/:id", getProject);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Updated Project Name"
- *               description:
- *                 type: string
- *                 example: "Updated project description."
- *               startDate:
- *                 type: string
- *                 format: date
- *                 example: "2025-03-01"
- *               endDate:
- *                 type: string
- *                 format: date
- *                 example: "2025-08-15"
+ *             $ref: "#/components/schemas/Project"
  *     responses:
  *       200:
  *         description: Project updated successfully
@@ -167,7 +161,7 @@ router.get("/:id", getProject);
  *       500:
  *         description: Internal Server Error
  */
-router.post("/:id", adminMiddleware, updateProject);
+router.put("/:id", adminMiddleware, updateProject);
 
 /**
  * @swagger

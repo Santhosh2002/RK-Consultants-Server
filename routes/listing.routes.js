@@ -13,7 +13,15 @@ const router = require("express").Router();
  * @swagger
  * tags:
  *   name: Listings
- *   description: API endpoints for managing listings
+ *   description: API endpoints for managing property listings
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Listing:
+ *       $ref: "#/components/schemas/Listing"
  */
 
 /**
@@ -34,7 +42,7 @@ const router = require("express").Router();
  *                 listings:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Listing"
  *       500:
  *         description: Internal Server Error
  */
@@ -60,7 +68,7 @@ router.get("/", getVisibleListing);
  *                 listings:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Listing"
  *       403:
  *         description: Unauthorized - Admin access required
  *       500:
@@ -91,7 +99,7 @@ router.get("/all", adminMiddleware, getListing);
  *               type: object
  *               properties:
  *                 listing:
- *                   type: object
+ *                   $ref: "#/components/schemas/Listing"
  *       404:
  *         description: Listing not found
  *       500:
@@ -113,24 +121,14 @@ router.get("/:id", getListingDetails);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - title
- *               - description
- *               - price
- *             properties:
- *               title:
- *                 type: string
- *                 example: "New Listing"
- *               description:
- *                 type: string
- *                 example: "This is a sample listing description."
- *               price:
- *                 type: number
- *                 example: 199.99
+ *             $ref: "#/components/schemas/Listing"
  *     responses:
  *       201:
  *         description: Listing created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Listing"
  *       400:
  *         description: Bad Request - Missing required fields
  *       403:
@@ -161,20 +159,14 @@ router.post("/create", adminMiddleware, createListing);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               title:
- *                 type: string
- *                 example: "Updated Listing Title"
- *               description:
- *                 type: string
- *                 example: "Updated listing description."
- *               price:
- *                 type: number
- *                 example: 249.99
+ *             $ref: "#/components/schemas/Listing"
  *     responses:
  *       200:
  *         description: Listing updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Listing"
  *       400:
  *         description: Bad Request - Invalid ID or missing fields
  *       403:

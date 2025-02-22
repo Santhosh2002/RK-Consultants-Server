@@ -14,8 +14,8 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: user
- *   description: API endpoints for managing user
+ *   name: User
+ *   description: API endpoints for managing users
  */
 
 /**
@@ -32,6 +32,7 @@ const router = express.Router();
  *         id:
  *           type: string
  *           description: The auto-generated ID of the user
+ *           example: "64b5fc2d3fa74b6dbd3c9162"
  *         username:
  *           type: string
  *           unique: true
@@ -40,7 +41,7 @@ const router = express.Router();
  *         password:
  *           type: string
  *           description: The user's password (hashed)
- *           example: "securepassword"
+ *           example: "$2a$12$XyZ12345abcd6789EfGhIj"
  *         role:
  *           type: string
  *           description: The role of the user (admin/user)
@@ -62,7 +63,7 @@ const router = express.Router();
  *   post:
  *     summary: Register a new user (Admin only)
  *     description: Creates a new user in the system.
- *     tags: [user]
+ *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -70,7 +71,7 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             $ref: "#/components/schemas/User"
  *     responses:
  *       201:
  *         description: User registered successfully
@@ -81,7 +82,7 @@ const router = express.Router();
  *       500:
  *         description: Internal Server Error
  */
-router.post("/register", createUser);
+router.post("/register", adminMiddleware, createUser);
 
 /**
  * @swagger
@@ -89,7 +90,7 @@ router.post("/register", createUser);
  *   post:
  *     summary: User login
  *     description: Authenticate user and return an access token.
- *     tags: [user]
+ *     tags: [User]
  *     requestBody:
  *       required: true
  *       content:
@@ -128,11 +129,11 @@ router.post("/login", login);
 
 /**
  * @swagger
- * /api/user/get:
+ * /api/user:
  *   get:
- *     summary: Get user details
+ *     summary: Get user details (Authenticated)
  *     description: Retrieve details of the logged-in user.
- *     tags: [user]
+ *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -141,21 +142,21 @@ router.post("/login", login);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: "#/components/schemas/User"
  *       401:
  *         description: Unauthorized - User not logged in
  *       500:
  *         description: Internal Server Error
  */
-router.get("/get", getUser);
+router.get("/", getUser);
 
 /**
  * @swagger
  * /api/user/{id}:
  *   get:
- *     summary: Get user by ID
+ *     summary: Get user by ID (Admin only)
  *     description: Retrieve details of a user by ID.
- *     tags: [user]
+ *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -171,21 +172,21 @@ router.get("/get", getUser);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/User'
+ *               $ref: "#/components/schemas/User"
  *       404:
  *         description: User not found
  *       500:
  *         description: Internal Server Error
  */
+router.get("/:id", adminMiddleware, getUserById);
 
-router.get("/:id", getUserById);
 /**
  * @swagger
  * /api/user/change-password:
- *   post:
+ *   put:
  *     summary: Change user password (Admin only)
  *     description: Allows admin to change a user's password.
- *     tags: [user]
+ *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -216,29 +217,29 @@ router.get("/:id", getUserById);
  *       500:
  *         description: Internal Server Error
  */
-router.post("/change-password", adminMiddleware, changePassword);
+router.put("/change-password", adminMiddleware, changePassword);
 
 /**
  * @swagger
- * /api/user/delete/{username}:
+ * /api/user/delete/{id}:
  *   delete:
  *     summary: Delete a user (Admin only)
- *     description: Removes a user from the system.
- *     tags: [user]
+ *     description: Removes a user from the system by ID.
+ *     tags: [User]
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: username
+ *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: The username of the user to delete
+ *         description: The user ID
  *     responses:
  *       200:
  *         description: User deleted successfully
  *       400:
- *         description: Bad Request - Invalid username
+ *         description: Bad Request - Invalid ID
  *       403:
  *         description: Unauthorized - Admin access required
  *       404:
@@ -246,6 +247,6 @@ router.post("/change-password", adminMiddleware, changePassword);
  *       500:
  *         description: Internal Server Error
  */
-router.delete("/delete/:username", adminMiddleware, deleteUser);
+router.delete("/delete/:id", adminMiddleware, deleteUser);
 
 module.exports = router;

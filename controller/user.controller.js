@@ -2,178 +2,116 @@ const User = require("../model/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
-const logger = require("../utils/logger.utils"); // ✅ Import logger
+const logger = require("../utils/logger.utils");
 
 dotenv.config();
 
-const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find({}, "username role"); // Only fetch required fields
     logger.info(`Fetched ${users.length} users`);
-    res.status(200).send({
-      users: users.map((user) => ({
-        username: user.username,
-        role: user.role,
-      })),
-    });
+    res.status(200).json({ users });
   } catch (error) {
     logger.error(`Error fetching users: ${error.message}`);
-    res.status(500).send({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-const getUserById = async (req, res) => {
+exports.getUserById = async (req, res) => {
   try {
-    const { id } = req.params; // Get user ID from request params
-    const user = await User.findById(id); // Fetch user by ID
-
-    if (!user) {
-      return res.status(404).send({ error: "User not found" });
-    }
+    const user = await User.findById(req.params.id, "username role");
+    if (!user) return res.status(404).json({ error: "User not found" });
 
     logger.info(`Fetched user: ${user.username}`);
-    res.status(200).send({
-      username: user.username,
-      role: user.role,
-    });
+    res.status(200).json(user);
   } catch (error) {
     logger.error(`Error fetching user: ${error.message}`);
-    res.status(500).send({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-const createUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   const { username, password, role } = req.body;
-  // const user = req.user;
-
-  // if (user.role !== "admin") {
-  //   logger.warn(
-  //     `Unauthorized user ${user.username} tried to create a new user`
-  //   );
-  //   return res.status(403).send("Forbidden");
-  // }
-
-  if (!username || !password) {
-    logger.warn("Missing username or password during user creation");
+  if (!username || !password)
     return res
       .status(400)
-      .send({ message: "Username and Password are required" });
-  }
+      .json({ message: "Username and Password are required" });
 
-  if (role !== "admin" && role !== "user") {
-    logger.warn("Invalid role provided");
-    return res.status(400).send({ message: "Invalid role" });
-  }
+  if (!["admin", "user"].includes(role))
+    return res.status(400).json({ message: "Invalid role" });
 
   try {
-    const newUser = new User({
-      username,
-      password,
-      role,
-    });
-    const salt = await bcrypt.genSalt(10);
-    newUser.password = await bcrypt.hash(password, salt);
-
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, password: hashedPassword, role });
     await newUser.save();
+
     logger.info(`User ${username} created successfully`);
-    res.status(201).send(newUser);
+    res.status(201).json({ username: newUser.username, role: newUser.role });
   } catch (error) {
     logger.error(`Error creating user: ${error.message}`);
-    res.status(500).send({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
-    if (!user) {
-      logger.warn(`Login failed for username: ${username} - User not found`);
-      return res.status(404).send({ message: "User not found" });
-    }
+    if (!user) return res.status(404).json({ message: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      logger.warn(
-        `Login failed for username: ${username} - Invalid credentials`
-      );
-      return res.status(400).send({ message: "Invalid credentials" });
-    }
+    if (!isMatch)
+      return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+
     logger.info(`User ${username} logged in successfully`);
-    res.status(200).send({ id: user._id, token, role: user.role });
+    res.status(200).json({ id: user._id, token, role: user.role });
   } catch (error) {
-    logger.error(`Error logging in user: ${error.message}`);
-    res.status(500).send({ error: error.message });
+    logger.error(`Error logging in: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 };
 
-const deleteUser = async (req, res) => {
-  const { username } = req.params;
-  const user = req.user;
-
-  if (user.role !== "admin") {
-    logger.warn(
-      `Unauthorized user ${user.username} attempted to delete user ${username}`
-    );
-    return res.status(403).send("Forbidden");
-  }
+exports.deleteUser = async (req, res) => {
+  if (req.user.role !== "admin")
+    return res.status(403).json({ message: "Forbidden" });
 
   try {
-    const deletedUser = await User.findOneAndDelete({ username });
-    if (!deletedUser) {
-      logger.warn(`User deletion failed - User ${username} not found`);
-      return res.status(404).send("User not found");
-    }
-    logger.info(`User ${username} deleted successfully`);
-    res.status(200).send(deletedUser);
+    const deletedUser = await User.findOneAndDelete({
+      username: req.params.username,
+    });
+    if (!deletedUser)
+      return res.status(404).json({ message: "User not found" });
+
+    logger.info(`User ${req.params.username} deleted successfully`);
+    res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     logger.error(`Error deleting user: ${error.message}`);
-    res.status(500).send(error);
+    res.status(500).json({ error: error.message });
   }
 };
 
-const changePassword = async (req, res) => {
+exports.changePassword = async (req, res) => {
   const { username, password } = req.body;
-  const user = req.user;
-
-  if (user.role !== "admin" && user.username !== username) {
-    logger.warn(`Unauthorized password change attempt by ${user.username}`);
-    return res.status(403).send("Forbidden");
-  }
+  if (req.user.role !== "admin" && req.user.username !== username)
+    return res.status(403).json({ message: "Forbidden" });
 
   try {
-    const targetUser = await User.findOne({ username });
-    if (!targetUser) {
-      logger.warn(`Password change failed - User ${username} not found`);
-      return res.status(404).send("User not found");
-    }
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ message: "User not found" });
 
-    const salt = await bcrypt.genSalt(10);
-    targetUser.password = await bcrypt.hash(password, salt);
-    await targetUser.save();
+    user.password = await bcrypt.hash(password, 10);
+    await user.save();
 
     logger.info(`Password changed successfully for user ${username}`);
-    res.status(200).send({
-      message: "Password changed successfully",
-      user: { username: targetUser.username, role: targetUser.role },
-    });
+    res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
     logger.error(`Error changing password: ${error.message}`);
-    res.status(500).send(error);
+    res.status(500).json({ error: error.message });
   }
-};
-
-module.exports = {
-  createUser,
-  login,
-  deleteUser,
-  getUser,
-  changePassword,
-  getUserById,
 };

@@ -19,6 +19,68 @@ const router = express.Router();
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     Service:
+ *       type: object
+ *       required:
+ *         - name
+ *         - description
+ *         - category
+ *         - price
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Name of the service
+ *           example: "Web Development"
+ *         description:
+ *           type: string
+ *           description: Description of the service
+ *           example: "Providing web development services."
+ *         category:
+ *           type: string
+ *           enum: ["Construction", "Interior Design", "Real Estate Consulting", "Legal Services", "Other"]
+ *           description: Category of the service
+ *           example: "Real Estate Consulting"
+ *         price:
+ *           type: number
+ *           description: Price of the service
+ *           example: 5000
+ *         currency:
+ *           type: string
+ *           default: "INR"
+ *           description: Currency used
+ *           example: "INR"
+ *         images:
+ *           type: array
+ *           items:
+ *             type: string
+ *             example: "https://example.com/image.jpg"
+ *         status:
+ *           type: string
+ *           enum: ["Available", "Temporarily Unavailable", "Discontinued"]
+ *           description: Current availability status of the service
+ *           example: "Available"
+ *         subServices:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Name of the sub-service
+ *                 example: "SEO Optimization"
+ *               description:
+ *                 type: string
+ *                 description: Description of the sub-service
+ *                 example: "SEO services to optimize websites."
+ *               price:
+ *                 type: number
+ *                 example: 2000
+ */
+
+/**
+ * @swagger
  * /api/services/create:
  *   post:
  *     summary: Create a new service (Admin only)
@@ -31,20 +93,14 @@ const router = express.Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required:
- *               - name
- *               - description
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Web Development"
- *               description:
- *                 type: string
- *                 example: "Providing web development services."
+ *             $ref: "#/components/schemas/Service"
  *     responses:
  *       201:
  *         description: Service created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Service"
  *       400:
  *         description: Bad Request - Missing required fields
  *       403:
@@ -72,7 +128,7 @@ router.post("/create", adminMiddleware, createService);
  *                 services:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Service"
  *       500:
  *         description: Internal Server Error
  */
@@ -80,7 +136,7 @@ router.get("/", getAllServices);
 
 /**
  * @swagger
- * /api/services/delete/{id}:
+ * /api/services/{id}:
  *   delete:
  *     summary: Delete a specific service (Admin only)
  *     description: Removes a service from the database by ID.
@@ -106,7 +162,7 @@ router.get("/", getAllServices);
  *       500:
  *         description: Internal Server Error
  */
-router.delete("/delete/:id", adminMiddleware, deleteService);
+router.delete("/:id", adminMiddleware, deleteService);
 
 /**
  * @swagger
@@ -130,7 +186,7 @@ router.delete("/deleteAll", adminMiddleware, deleteAllServices);
 /**
  * @swagger
  * /api/services/{id}:
- *   post:
+ *   put:
  *     summary: Update a service (Admin only)
  *     description: Update details of a specific service by ID.
  *     tags: [Services]
@@ -148,14 +204,7 @@ router.delete("/deleteAll", adminMiddleware, deleteAllServices);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 example: "Updated Service Name"
- *               description:
- *                 type: string
- *                 example: "Updated service description."
+ *             $ref: "#/components/schemas/Service"
  *     responses:
  *       200:
  *         description: Service updated successfully
@@ -168,6 +217,6 @@ router.delete("/deleteAll", adminMiddleware, deleteAllServices);
  *       500:
  *         description: Internal Server Error
  */
-router.post("/:id", adminMiddleware, updateService);
+router.put("/:id", adminMiddleware, updateService);
 
 module.exports = router;
