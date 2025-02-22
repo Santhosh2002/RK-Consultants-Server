@@ -5,6 +5,7 @@ const {
   getUser,
   deleteUser,
   changePassword,
+  getUserById,
 } = require("../controller/user.controller");
 const adminMiddleware = require("../middleware/admin.middleware");
 
@@ -148,6 +149,36 @@ router.post("/login", login);
  */
 router.get("/get", getUser);
 
+/**
+ * @swagger
+ * /api/user/{id}:
+ *   get:
+ *     summary: Get user by ID
+ *     description: Retrieve details of a user by ID.
+ *     tags: [user]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The user ID
+ *     responses:
+ *       200:
+ *         description: User details retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+router.get("/:id", getUserById);
 /**
  * @swagger
  * /api/user/change-password:

@@ -22,6 +22,26 @@ const getUser = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params; // Get user ID from request params
+    const user = await User.findById(id); // Fetch user by ID
+
+    if (!user) {
+      return res.status(404).send({ error: "User not found" });
+    }
+
+    logger.info(`Fetched user: ${user.username}`);
+    res.status(200).send({
+      username: user.username,
+      role: user.role,
+    });
+  } catch (error) {
+    logger.error(`Error fetching user: ${error.message}`);
+    res.status(500).send({ error: error.message });
+  }
+};
+
 const createUser = async (req, res) => {
   const { username, password, role } = req.body;
   // const user = req.user;
@@ -155,4 +175,5 @@ module.exports = {
   deleteUser,
   getUser,
   changePassword,
+  getUserById,
 };
