@@ -4,6 +4,9 @@ const swaggerUiAssetPath = require("swagger-ui-dist").absolutePath();
 const path = require("path");
 const express = require("express");
 // Swagger definition
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 const options = {
   definition: {
     openapi: "3.0.0",
@@ -23,6 +26,7 @@ const options = {
       },
     ],
   },
+
   apis: ["./routes/*.js"], // Path to API route files
 };
 
@@ -37,10 +41,10 @@ const swaggerDocs = (app) => {
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, {
       explorer: true,
-      customCssUrl: "/swagger-ui/swagger-ui.css", // ✅ Ensure correct CSS loading
+      customCssUrl: CSS_URL, // ✅ Ensure correct CSS loading
     })
   );
-  console.log("Swagger Docs available at http://localhost:3000/api-docs");
+  console.log("Swagger Docs available at http://localhost:3000");
 };
 
 module.exports = swaggerDocs;
