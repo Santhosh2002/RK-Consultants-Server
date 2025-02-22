@@ -35,7 +35,10 @@ const swaggerDocs = (app) => {
   app.use(
     "/",
     swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec, { explorer: true })
+    swaggerUi.setup(swaggerSpec, {
+      explorer: true,
+      customCssUrl: "/swagger-ui/swagger-ui.css", // ✅ Ensure correct CSS loading
+    })
   );
   console.log("Swagger Docs available at http://localhost:3000/api-docs");
 };
