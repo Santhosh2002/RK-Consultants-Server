@@ -15,6 +15,10 @@ const options = {
         url: "http://localhost:3000", // Change if using a different port
         description: "Local server",
       },
+      {
+        url: "https://rk-consultants-server.vercel.app",
+        description: "Prod Server",
+      },
     ],
   },
   apis: ["./routes/*.js"], // Path to API route files
