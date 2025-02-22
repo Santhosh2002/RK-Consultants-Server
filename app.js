@@ -54,4 +54,4 @@ app.use("/api/mail", mailRoutes);
 app.use("/api/payment", paymentRoutes);
 swaggerDocs(app);
 
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+module.exports = app;
