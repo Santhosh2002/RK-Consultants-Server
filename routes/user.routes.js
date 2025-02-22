@@ -82,7 +82,7 @@ const router = express.Router();
  *       500:
  *         description: Internal Server Error
  */
-router.post("/register", adminMiddleware, createUser);
+router.post("/register", createUser);
 
 /**
  * @swagger

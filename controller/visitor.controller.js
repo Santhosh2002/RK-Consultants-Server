@@ -14,7 +14,7 @@ exports.addVisitor = async (req, res) => {
 exports.getVisitors = async (req, res) => {
   try {
     const visitors = await Visitor.find();
-    res.status(200).json({ total: visitors.length, visitors });
+    res.status(200).json({ total: visitors.length, visitors: visitors });
   } catch (error) {
     console.error(`Error fetching visitors: ${error.message}`);
     res.status(500).json({ message: error.message });

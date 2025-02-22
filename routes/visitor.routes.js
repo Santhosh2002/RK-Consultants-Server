@@ -13,7 +13,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/visitors/add:
+ * /api/visitor/add:
  *   post:
  *     summary: Add a new visitor
  *     description: Logs a new visitor entry into the system.
@@ -36,7 +36,7 @@ router.post("/add", addVisitor);
 
 /**
  * @swagger
- * /api/visitors:
+ * /api/visitor/visitors:
  *   get:
  *     summary: Get visitor statistics
  *     description: Retrieve visitor statistics, including total visitor count.
@@ -59,6 +59,6 @@ router.post("/add", addVisitor);
  *       500:
  *         description: Internal Server Error
  */
-router.get("/", getVisitors);
+router.get("/visitors", getVisitors);
 
 module.exports = router;
