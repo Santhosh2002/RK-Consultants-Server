@@ -17,7 +17,7 @@ const mailRoutes = require("../routes/mail.routes");
 const bodyParser = require("body-parser");
 const paymentRoutes = require("../routes/payment.routes");
 dotenv.config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.use(
   cors({
     //allow all origin
