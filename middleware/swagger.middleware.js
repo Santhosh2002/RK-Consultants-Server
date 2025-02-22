@@ -1,5 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const swaggerUiAssetPath = require("swagger-ui-dist").absolutePath();
 
 // Swagger definition
 const options = {
@@ -28,7 +29,13 @@ const options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 const swaggerDocs = (app) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/swagger-ui", express.static(swaggerUiAssetPath));
+
+  app.use(
+    "/",
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, { explorer: true })
+  );
   console.log("Swagger Docs available at http://localhost:3000/api-docs");
 };
 
