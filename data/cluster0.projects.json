@@ -1,0 +1,179 @@
+[{
+  "_id": {
+    "$oid": "676ff75c3553b26c6d9974a9"
+  },
+  "title": "Rudra Paradise",
+  "brochure": "https://rkrealco.com/uploads/1735454463_rpc brochure.pdf",
+  "image": "https://rkrealco.com/uploads/1735453984_rudra.jpg",
+  "description": "Rudra Paradise",
+  "startDate": {
+    "$date": "2024-12-28T18:33:00.000Z"
+  },
+  "status": "closed",
+  "createdAt": {
+    "$date": "2024-12-28T13:04:28.657Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-14T06:02:07.098Z"
+  },
+  "__v": 1,
+  "age": "0",
+  "amenities": [
+    "24x7security",
+    "wifi",
+    "water-supply"
+  ],
+  "balcony": "1",
+  "bathrooms": "2",
+  "bedrooms": "2",
+  "bhk": "3BHK",
+  "carpetArea": "1651",
+  "facing": "North",
+  "floor": "2",
+  "furnishingStatus": "Unfurnished",
+  "landmark": "Central City Mall",
+  "ownership": "Freehold",
+  "parking": "Car+bike",
+  "price": "20000",
+  "transactionType": "Sale",
+  "visible": false
+},
+{
+  "_id": {
+    "$oid": "676ffe68c126347916713022"
+  },
+  "title": "Prabhat Residency",
+  "brochure": "",
+  "image": "https://rkrealco.com/uploads/1735392869_project-01.jpg",
+  "description": "Prabhat Residency",
+  "startDate": {
+    "$date": "2024-12-28T13:34:33.957Z"
+  },
+  "status": "active",
+  "createdAt": {
+    "$date": "2024-12-28T13:34:32.443Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-28T13:34:32.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677260961d0bc46130ed304c"
+  },
+  "title": "Ambit ",
+  "brochure": null,
+  "image": "https://rkrealco.com/uploads/1735628048_images (2).jpg",
+  "description": "Experience urban living at its finest in this beautifully designed 3-bedroom, 2-bathroom apartment located in the vibrant neighborhood of Indiranagar. Spanning 1,500 sq. ft., this property boasts a modern open floor plan with abundant natural light, premium wooden flooring, and a fully equipped modular kitchen.",
+  "startDate": {
+    "$date": "2024-12-30T08:57:56.000Z"
+  },
+  "status": "active",
+  "createdAt": {
+    "$date": "2024-12-30T08:57:58.019Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-14T06:03:28.418Z"
+  },
+  "__v": 1,
+  "age": "0",
+  "amenities": [
+    ""
+  ],
+  "balcony": "0",
+  "bathrooms": "0",
+  "bedrooms": "0",
+  "bhk": "1BHK",
+  "carpetArea": "0",
+  "facing": "",
+  "floor": "0",
+  "furnishingStatus": "Unfurnished",
+  "landmark": "",
+  "ownership": "Not Disclosed",
+  "parking": "",
+  "price": "0",
+  "transactionType": "Rent",
+  "visible": false
+},
+{
+  "_id": {
+    "$oid": "67851c897f5ff07812f7ec6c"
+  },
+  "title": "Luxury Apartment for Rent",
+  "brochure": "https://example.com/brochure.pdf",
+  "image": "https://rkrealco.com/uploads/1736776959_home3.jpg",
+  "description": "A luxurious 2BHK apartment available for rent in the heart of the city.",
+  "startDate": {
+    "$date": "2025-01-01T00:00:00.000Z"
+  },
+  "status": "active",
+  "price": "30000",
+  "visible": false,
+  "bhk": "2BHK",
+  "carpetArea": "1200",
+  "transactionType": "Rent",
+  "furnishingStatus": "Furnished",
+  "floor": "5",
+  "facing": "North",
+  "parking": "2",
+  "amenities": [
+    "Swimming Pool",
+    "Gym",
+    "24/7 Security"
+  ],
+  "ownership": "Owner",
+  "age": "2",
+  "landmark": "Near City Mall",
+  "bedrooms": "2",
+  "bathrooms": "2",
+  "balcony": "1",
+  "createdAt": {
+    "$date": "2025-01-13T14:00:41.606Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-13T14:02:42.792Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678520a18ed3a6d5bba9d046"
+  },
+  "title": "Rudra sahuilll",
+  "brochure": "https://rkrealco.com/uploads/1736778585_sample.pdf",
+  "image": "https://rkrealco.com/uploads/1736779132_home 2 4.jpg",
+  "description": "A luxurious 2BHK apartment available for rent in the heart of the city.",
+  "startDate": {
+    "$date": "2025-01-13T14:17:53.015Z"
+  },
+  "status": "active",
+  "price": "1000000",
+  "visible": false,
+  "bhk": "2",
+  "carpetArea": "6500",
+  "transactionType": "Rent",
+  "furnishingStatus": "Furnished",
+  "floor": "2",
+  "facing": "South",
+  "parking": "Car+bike",
+  "amenities": [
+    "24x7security",
+    "wifi",
+    "water-supply"
+  ],
+  "ownership": "Freehold",
+  "age": "2",
+  "landmark": "Central City Mall",
+  "bedrooms": "",
+  "bathrooms": "",
+  "balcony": "",
+  "createdAt": {
+    "$date": "2025-01-13T14:18:09.091Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-17T17:25:45.877Z"
+  },
+  "__v": 0,
+  "video": "https://www.youtube.com/@RKRealtorsConsultants"
+}]

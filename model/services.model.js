@@ -1,26 +1,80 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const serviceSchema = new mongoose.Schema({
+const serviceSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
+      trim: true,
+    },
+    slug: {
+      // SEO-friendly URL
+      type: String,
+      unique: true,
+      lowercase: true,
+      trim: true,
     },
     description: {
-        type: String,
+      type: String,
+      default: "",
     },
-    subServices : {
-        type: Array,
-        required:true, 
+    category: {
+      type: String,
+      enum: [
+        "Construction",
+        "Interior Design",
+        "Real Estate Consulting",
+        "Legal Services",
+        "Other",
+      ],
+      required: true,
+    },
+    serviceType: {
+      type: String,
+      default: "Standard", // Example: "Premium", "Basic", "Custom", etc.
+    },
+    price: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    currency: {
+      type: String,
+      default: "INR",
+    },
+    images: [
+      {
+        type: String, // URL of images
         default: [],
+      },
+    ],
+    status: {
+      type: String,
+      enum: ["Available", "Temporarily Unavailable", "Discontinued"],
+      default: "Available",
     },
-    image:{
-        type: String,
-        default: "", 
-        
-    }
+    subServices: [
+      {
+        name: { type: String, required: true },
+        description: { type: String, default: "" },
+        price: { type: Number, required: true, default: 0 },
+        currency: { type: String, default: "INR" },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
+// Auto-generate a slug from the name
+serviceSchema.pre("save", function (next) {
+  if (this.name) {
+    this.slug = this.name
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "");
+  }
+  next();
+});
 
-},{timestamps: true});
-
-const Service = mongoose.model('Service', serviceSchema);
+const Service = mongoose.model("Service", serviceSchema);
 module.exports = Service;

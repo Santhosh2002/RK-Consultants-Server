@@ -1,0 +1,30 @@
+2025-02-22T06:09:41.316Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:09:41.410Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:09:41.518Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:09:41.573Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:09:41.600Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:11:11.097Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:11:11.241Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:11:11.342Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:11:11.359Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:11:11.397Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:13:29.268Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:13:29.349Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:13:29.457Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:13:29.503Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:13:29.549Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:14:40.041Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:14:40.109Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:14:40.226Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:14:40.262Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:14:40.348Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:15:43.329Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:15:43.429Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:15:43.542Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:15:43.544Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:15:43.662Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:19:18.809Z [INFO]: Database connected successfully to RK-Admin
+2025-02-22T06:19:18.886Z [INFO]: DB CALL: projects.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:19:19.018Z [INFO]: DB CALL: users.createIndex - Query: {"username":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:19:19.072Z [INFO]: DB CALL: services.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}
+2025-02-22T06:19:19.147Z [INFO]: DB CALL: listings.createIndex - Query: {"slug":1} - Data: {"unique":true,"background":true}

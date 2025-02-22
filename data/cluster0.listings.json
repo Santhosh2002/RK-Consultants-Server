@@ -1,0 +1,83 @@
+[{
+  "_id": {
+    "$oid": "678282f26889cafa3eec3bf2"
+  },
+  "title": "Spacious 2BHK Apartment for Rent",
+  "description": "A beautiful and spacious 2BHK apartment located in a prime area",
+  "contact": "1234567890",
+  "images": [
+    "https://rkrealco.com/uploads/1736606443_home _iamge.jpg",
+    "https://rkrealco.com/uploads/1736606446_home 2 4.jpg",
+    "https://rkrealco.com/uploads/1736606683_home3.jpg"
+  ],
+  "price": "2500000",
+  "visible": true,
+  "bhk": "3",
+  "carpetArea": "6500",
+  "transactionType": "Resale",
+  "furnishingStatus": "Fully Furnished",
+  "floor": "2",
+  "facing": "East",
+  "status": "Ready to Use",
+  "parking": "Car+bike",
+  "amenities": [
+    "24x7security",
+    "wifi",
+    "water-supply",
+    "gas-supply"
+  ],
+  "ownership": "Freehold",
+  "age": "2",
+  "landmark": "Central Jail",
+  "bedrooms": "2",
+  "bathrooms": "3",
+  "balcony": "1",
+  "createdAt": {
+    "$date": "2025-01-11T14:40:50.499Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-15T18:18:58.424Z"
+  },
+  "__v": 1,
+  "video": "https://www.youtube.com/@RKRealtorsConsultants"
+},
+{
+  "_id": {
+    "$oid": "67829a486a76b8395d83db8c"
+  },
+  "title": "Luxury 3BHK Villa for Sale",
+  "description": "A stunning 3BHK villa with modern amenities and a serene environment.",
+  "contact": "1234567890",
+  "images": [
+    "https://rkrealco.com/uploads/1736612423_home3.jpg"
+  ],
+  "price": "2000000",
+  "visible": true,
+  "bhk": "3",
+  "carpetArea": "6500",
+  "transactionType": "Resale",
+  "furnishingStatus": "Fully Furnished",
+  "floor": "2",
+  "facing": "South",
+  "status": "Ready to Use",
+  "parking": "2 Car",
+  "amenities": [
+    "24x7security",
+    "wifi",
+    "water-supply",
+    ""
+  ],
+  "ownership": "Freehold",
+  "age": "5",
+  "landmark": "Central City Mall",
+  "bedrooms": "3",
+  "bathrooms": "3",
+  "balcony": "2",
+  "createdAt": {
+    "$date": "2025-01-11T16:20:24.372Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-11T16:20:58.332Z"
+  },
+  "__v": 0
+}]

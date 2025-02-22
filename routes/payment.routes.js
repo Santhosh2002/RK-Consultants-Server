@@ -1,0 +1,167 @@
+const {
+  createOrders,
+  verifyPayments,
+} = require("../controller/payment.controller");
+const express = require("express");
+const router = express.Router();
+
+/**
+ * @swagger
+ * tags:
+ *   name: Payments
+ *   description: API endpoints for managing payments
+ */
+
+/**
+ * @swagger
+ * /api/payment/create-order:
+ *   post:
+ *     summary: Create a new payment order
+ *     description: Creates a payment order using Razorpay and stores it in the database.
+ *     tags: [Payments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               amount:
+ *                 type: number
+ *                 example: 500
+ *                 description: "Amount in INR (before conversion to paise)"
+ *               currency:
+ *                 type: string
+ *                 example: "INR"
+ *                 description: "Currency code (default is INR)"
+ *               clientId:
+ *                 type: string
+ *                 example: "64b4fc2d3fa74b6dbd3c9162"
+ *                 description: "Client ID for tracking the payment"
+ *               services:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["Service1", "Service2"]
+ *                 description: "List of services associated with the order"
+ *     responses:
+ *       200:
+ *         description: Payment order created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 order:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                       type: string
+ *                       example: "order_HMZ4A1EjKz5ZZ1"
+ *                     amount:
+ *                       type: integer
+ *                       example: 50000
+ *                       description: "Amount in paise"
+ *                     currency:
+ *                       type: string
+ *                       example: "INR"
+ *                     receipt:
+ *                       type: string
+ *                       example: "receipt_1708290345"
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Payment Order Creation Failed"
+ *                 error:
+ *                   type: object
+ *                   example: { "message": "Some error occurred" }
+ */
+router.post("/create-order", createOrders);
+/**
+ * @swagger
+ * /api/payment/verify:
+ *   post:
+ *     summary: Verify Razorpay Payment
+ *     description: Verifies the Razorpay payment using HMAC signature and updates the payment status.
+ *     tags:
+ *       - Payments
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - razorpay_payment_id
+ *               - razorpay_order_id
+ *               - razorpay_signature
+ *             properties:
+ *               razorpay_payment_id:
+ *                 type: string
+ *                 example: "pay_29QQoUBi66xm2f"
+ *               razorpay_order_id:
+ *                 type: string
+ *                 example: "order_9A33XWu170gUtm"
+ *               razorpay_signature:
+ *                 type: string
+ *                 example: "e5c245d7a176b4861985b0478d0df35db9c2a2a5b7dd4a5a"
+ *     responses:
+ *       200:
+ *         description: Payment verified successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Payment verified successfully"
+ *       400:
+ *         description: Payment verification failed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Payment verification failed"
+ *       500:
+ *         description: Server error occurred during verification
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Error verifying payment"
+ *                 error:
+ *                   type: string
+ *                   example: "Internal Server Error"
+ */
+
+router.post("/verify", verifyPayments);
+
+module.exports = router;

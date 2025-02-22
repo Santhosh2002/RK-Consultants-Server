@@ -1,0 +1,273 @@
+[{
+  "_id": {
+    "$oid": "676fe5c9c54d08d8a1e0ee56"
+  },
+  "name": "Start a Business ",
+  "description": "Embark on your entrepreneurial journey with RK Realtors & Consultants! With an expert by our side, you can confidently manage your startup. Our “Start a Business” service guides you through everything, from idea conception to incorporation.  Our expert advisors ensure strategic planning while maintaining legal compliance thereby ensuring the long-term success of your venture",
+  "image": "https://rkrealco.com/uploads/1735386568_15773.jpg",
+  "createdAt": {
+    "$date": "2024-12-28T11:49:29.439Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T21:18:28.974Z"
+  },
+  "__v": 1,
+  "subServices": [
+    "Company Registration   ",
+    "PRIVATE LIMITED COMPANY",
+    "PUBLIC LIMITED COMPANY",
+    "ONE PERSON COMPANY",
+    "SECTION 8 COMPANY",
+    "NIDHI COMPANY",
+    "FINANCE COMPANY / NBFC REGISTRATION"
+  ]
+},
+{
+  "_id": {
+    "$oid": "676fe610c54d08d8a1e0ee59"
+  },
+  "name": "Business Formation",
+  "description": "At RK Realtors & Consultants, our experts simplify the entire process for you when it comes to business formation. We provide tailored solutions whether you are setting up a sole proprietorship, corporation, or partnership",
+  "image": "https://rkrealco.com/uploads/1735386639_124515.jpg",
+  "createdAt": {
+    "$date": "2024-12-28T11:50:40.476Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T21:17:17.677Z"
+  },
+  "__v": 1,
+  "subServices": [
+    "ASSOCIATIONS OF PERSONS (AOP)",
+    "MSME REGISTRATION",
+    "REGISTRATION UNDER LOCAL SHOP ACT",
+    "LIMITED LIABILITY PARTNERSHIP (LLP)",
+    "PARTNERSHIP FIRM REGISTRATION",
+    "SOLE PROPRIETORSHIP FIRM REGISTRATION"
+  ]
+},
+{
+  "_id": {
+    "$oid": "676fe7e7c54d08d8a1e0ee73"
+  },
+  "name": "Special Entity Registration  ",
+  "description": "Our team helps you seamlessly navigate the specialized entity registration procedure effortlessly with RK Realtor & Consultants. Our team of experts facilitates registration for societies, trusts, NGOs, and other entities taking care of all regulatory and legal frameworks and requirements",
+  "image": "https://rkrealco.com/uploads/1735387110_125164.jpg",
+  "createdAt": {
+    "$date": "2024-12-28T11:58:31.847Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T21:15:58.895Z"
+  },
+  "__v": 1,
+  "subServices": [
+    "Registration",
+    "JOINT VENTURE",
+    "STARTUP REGISTRATIONS",
+    "NGO REGISTRATION AS A SECTION 8 COMPANY",
+    "NGO REGISTRATION AS A TRUST",
+    "NGO REGISTRATION AS A SOCIETY"
+  ]
+},
+{
+  "_id": {
+    "$oid": "676ff3823553b26c6d997495"
+  },
+  "name": "Intellectual Property Rights (IPR)",
+  "description": "Protect your creative work, brand, and innovations with our IPR services. Our experienced legal team assists you with patent registrations, copyright, and trademark safeguarding your assets from unauthorized use and infringement",
+  "image": "https://rkrealco.com/uploads/1735390081_ipr.jpg",
+  "createdAt": {
+    "$date": "2024-12-28T12:48:02.894Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T21:13:52.253Z"
+  },
+  "__v": 1,
+  "subServices": [
+    "PATENT SEARCH",
+    "TRADEMARK RECTIFICATION",
+    "TRADEMARK OPPOSITION",
+    "TRADEMARK OBJECTION",
+    "TRADEMARK RENEWAL",
+    "TRADEMARK REGISTRATION",
+    "TRADEMARK SEARCH"
+  ]
+},
+{
+  "_id": {
+    "$oid": "677000d21ad2b08eab8d6446"
+  },
+  "name": "ISO Certifications ",
+  "description": "Want to demonstrate your brand commitment to quality and excellence? Our consultants help you streamline the process for competitiveness and enhanced credibility.  Whether you are pursuing ISO 14001 or ISO 9001, our team has you covered",
+  "image": "https://rkrealco.com/uploads/1735393488_iso.jpg",
+  "createdAt": {
+    "$date": "2024-12-28T13:44:50.110Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T21:11:29.221Z"
+  },
+  "__v": 1,
+  "subServices": [
+    "ISO 22000 : 2018 - FOOD SAFETY",
+    "ISO 18001 : 2007 - OCCUPATIONAL HEALTH",
+    "ISO 14001 : 2015 - ENVIRONMENT",
+    "ISO 9001 : 2015 - QMS",
+    "ISO 50001 : 2018 - ENERGY MANAGEMENT SYSTEM",
+    "ISO 29990 : 2010 - NON FORMAL EDUCATION AND TRAINING",
+    "ISO 23001 / 22301 : 2016 - BUSINESS CONTINUITY MANAGEMENT",
+    "ISO 13485 : 2016 - QUALITY MANAGEMENT FOR MEDICAL DEVICES",
+    "ISO 20000 : 2011 - IT MANAGEMENT SERVICE"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6770ca342e8c79634f0f196a"
+  },
+  "name": "Accounting, Auditing & Taxation",
+  "description": "Want to ensure compliance and financial transparency? Want to get rid of tax hassles? Our qualified accountants at RK Realtors & Consultants offer you comprehensive solutions tailored to your business requirements. Whether you seek tax planning, auditing, or bookkeeping services, our team has you covered",
+  "image": "https://rkrealco.com/uploads/1735445043_account.jpg",
+  "createdAt": {
+    "$date": "2024-12-29T04:04:04.190Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-05T20:29:40.342Z"
+  },
+  "__v": 7,
+  "subServices": [
+    "Tax Audit",
+    "Company Audit",
+    "Stock Audit",
+    "Cost Audit"
+  ]
+},
+{
+  "_id": {
+    "$oid": "677fcdd37363c32799ed1014"
+  },
+  "name": "Popular Registrations",
+  "description": "Get access to swift and accurate essential registrations with RK Realtors & Consultants. With TAN and PAN, shop licenses to GST registrations, our team helps you expedite the process",
+  "subServices": [
+    "GST REGISTRATION",
+    "FOOD LICENCE",
+    "IMPORT - EXPORT CODE",
+    "PF REGISTRATION",
+    "ESI REGISTRATION",
+    "FCRA REGISTRATION",
+    "TRADE LICENCE",
+    "PROFESSIONAL TAX REGISTRATIONS",
+    "12A & 80G OF INCOME TAX ACT",
+    "NITI AAYOG / NGO DARPAN"
+  ],
+  "image": "https://rkrealco.com/uploads/1736429009_regss.jpg",
+  "createdAt": {
+    "$date": "2025-01-09T13:23:31.334Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-09T13:23:31.334Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677fcf0815098f60b3839754"
+  },
+  "name": "Other Certifications",
+  "description": "Want to meet industry standards? Our team at RK Realtors & Consultants helps you acquire a diverse range of compliance certifications so you stay ahead in the competitive marketplace.  ",
+  "subServices": [
+    "CE-MARKING",
+    "HACCP (HAZARD ANALYSIS CRITICAL CONTROL POINT)",
+    "HALAL CERTIFICATION ( FOR MIDDLE EAST COMPANY)",
+    "GMP FOOD (INDIAN GUIDELINES)",
+    "BIFMA CERTIFICATION",
+    "ORGANIC CERTIFICATION",
+    "AGMARK CERTIFICATION",
+    "BIS CERTIFICATION",
+    "PASARA LICENSE (SECURITY AGENCY)"
+  ],
+  "image": "https://rkrealco.com/uploads/1736429319_certification.jpg",
+  "createdAt": {
+    "$date": "2025-01-09T13:28:40.790Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-09T13:28:40.790Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677fcfb57363c32799ed1019"
+  },
+  "name": "Entity Conversions",
+  "description": "Optimize your business structures and streamline transitions with RK Realtors & and Consultants. Whether you want to convert from a sole proprietorship to a corporation or are keen on restructuring partnerships, our legal experts will ensure smooth transitions.   ",
+  "subServices": [
+    "PROPRIETORSHIP TO PRIVATE LIMITED COMPANY",
+    "PROPRIETORSHIP TO LLP",
+    "PROPRIETORSHIP TO PARTNERSHIP",
+    "PARTNERSHIP TO LLP",
+    "OPC TO PRIVATE LIMITED COMPANY",
+    "PRIVATE LIMITED TO OPC",
+    "LLP TO PRIVATE/PUBLIC LIMITED COMPANY",
+    "PRIVATE LIMITED TO PUBLIC LIMITED COMPANY",
+    "PUBLIC LIMITED COMPANY TO PRIVATE LIMITED",
+    "DISSOLUTION OF PARTNERSHIP FIRM"
+  ],
+  "image": "https://rkrealco.com/uploads/1736429492_entity (1).jpg",
+  "createdAt": {
+    "$date": "2025-01-09T13:31:33.790Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-09T13:31:33.790Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677fd0327363c32799ed101c"
+  },
+  "name": "Secretarial Compliances",
+  "description": "Always stay on top of regulatory obligations by teaming up with RK Realtors & and Consultants. Our team ensures timely filings, adherence to governance standards, countering legal issues, risk of penalties, and more.   ",
+  "subServices": [
+    "Annual Compliance For Private Limited Company",
+    "ROC COMPLIANCES",
+    "CLOSE YOUR PVT LTD",
+    "CLOSE YOUR LLP",
+    "CHANGE IN AUTHORISED CAPITAL",
+    "ADD OR REMOVE PARTNER",
+    "ADD OR REMOVE DIRECTOR",
+    "CHANGE OBJECTIVE OF BUSINESS",
+    "CHANGE OFFICIAL ADDRESS",
+    "CHANGE COMPANY NAME"
+  ],
+  "image": "https://rkrealco.com/uploads/1736429617_sc.png",
+  "createdAt": {
+    "$date": "2025-01-09T13:33:38.075Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-09T13:33:38.075Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677fd0aa7363c32799ed101f"
+  },
+  "name": "Business Collaborations",
+  "description": "Want to explore new business opportunities or forge strategic partnerships? Our team facilitates joint ventures, collaborations, mutual growth, and alliances in dynamic markets.    ",
+  "subServices": [
+    "PARTNERSHIP DEED",
+    "TRUST DEED",
+    "FRANCHISE AGREEMENT",
+    "JOINT VENTURE AGREEMENT",
+    "MEMORANDUM OF UNDERSTANDING",
+    "CONSULTANCY AGREEMENT",
+    "FREELANCER AGREEMENT",
+    "VENDOR AGREEMENT"
+  ],
+  "image": "https://rkrealco.com/uploads/1736429737_business.jpg",
+  "createdAt": {
+    "$date": "2025-01-09T13:35:38.673Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-09T13:35:38.673Z"
+  },
+  "__v": 0
+}]
