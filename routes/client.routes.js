@@ -24,13 +24,13 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/clients/createClient:
+ * /api/client/createClient:
  *   post:
  *     summary: Create a new client
  *     description: Adds a new client to the database. Only accessible by an admin.
  *     tags: [Clients]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -58,7 +58,7 @@ router.post("/createClient", adminMiddleware, createClient);
 
 /**
  * @swagger
- * /api/clients:
+ * /api/client:
  *   get:
  *     summary: Get all clients
  *     description: Retrieve a list of all clients from the database.
@@ -82,13 +82,13 @@ router.get("/", getAllClients);
 
 /**
  * @swagger
- * /api/clients/{id}:
+ * /api/client/{id}:
  *   put:
  *     summary: Update a client
  *     description: Update client details by ID. Only accessible by an admin.
  *     tags: [Clients]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

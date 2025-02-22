@@ -70,7 +70,7 @@ router.get("/", getStats);
  *     description: Adds new statistics to the database.
  *     tags: [Stats]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -101,7 +101,7 @@ router.post("/create", adminMiddleware, createStats);
  *     description: Update specific statistics by ID.
  *     tags: [Stats]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

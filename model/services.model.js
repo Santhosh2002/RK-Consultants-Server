@@ -25,6 +25,7 @@ const serviceSchema = new mongoose.Schema(
         "Interior Design",
         "Real Estate Consulting",
         "Legal Services",
+        "Business",
         "Other",
       ],
       required: true,

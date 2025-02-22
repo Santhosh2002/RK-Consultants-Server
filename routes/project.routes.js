@@ -50,13 +50,13 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/projects/create:
+ * /api/project/create:
  *   post:
  *     summary: Create a new project (Admin only)
  *     description: Adds a new project to the database.
  *     tags: [Projects]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -77,7 +77,7 @@ router.post("/create", adminMiddleware, createProject);
 
 /**
  * @swagger
- * /api/projects:
+ * /api/project:
  *   get:
  *     summary: Get all projects
  *     description: Retrieve a list of all projects from the database.
@@ -101,7 +101,7 @@ router.get("/", getAllProjects);
 
 /**
  * @swagger
- * /api/projects/{id}:
+ * /api/project/{id}:
  *   get:
  *     summary: Get project details
  *     description: Retrieve details of a specific project by ID.
@@ -129,13 +129,13 @@ router.get("/:id", getProject);
 
 /**
  * @swagger
- * /api/projects/{id}:
+ * /api/project/{id}:
  *   put:
  *     summary: Update a project (Admin only)
  *     description: Update details of a specific project by ID.
  *     tags: [Projects]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id
@@ -165,13 +165,13 @@ router.put("/:id", adminMiddleware, updateProject);
 
 /**
  * @swagger
- * /api/projects/{id}:
+ * /api/project/{id}:
  *   delete:
  *     summary: Delete a project (Admin only)
  *     description: Remove a specific project by ID.
  *     tags: [Projects]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

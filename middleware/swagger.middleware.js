@@ -26,6 +26,13 @@ const options = {
       },
     ],
     components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
       schemas: {
         Client: {
           type: "object",
@@ -927,6 +934,11 @@ const options = {
           required: ["username", "password", "role"],
         },
       },
+      security: [
+        {
+          BearerAuth: [], // Apply security globally
+        },
+      ],
     },
   },
 

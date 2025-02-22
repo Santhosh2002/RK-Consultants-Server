@@ -81,13 +81,13 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/services/create:
+ * /api/service/create:
  *   post:
  *     summary: Create a new service (Admin only)
  *     description: Adds a new service to the database.
  *     tags: [Services]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -112,7 +112,7 @@ router.post("/create", adminMiddleware, createService);
 
 /**
  * @swagger
- * /api/services:
+ * /api/service:
  *   get:
  *     summary: Get all services
  *     description: Retrieve a list of all services from the database.
@@ -136,13 +136,13 @@ router.get("/", getAllServices);
 
 /**
  * @swagger
- * /api/services/{id}:
+ * /api/service/{id}:
  *   delete:
  *     summary: Delete a specific service (Admin only)
  *     description: Removes a service from the database by ID.
  *     tags: [Services]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id
@@ -166,13 +166,13 @@ router.delete("/:id", adminMiddleware, deleteService);
 
 /**
  * @swagger
- * /api/services/deleteAll:
+ * /api/service/deleteAll:
  *   delete:
  *     summary: Delete all services (Admin only)
  *     description: Removes all services from the database.
  *     tags: [Services]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     responses:
  *       200:
  *         description: All services deleted successfully
@@ -185,13 +185,13 @@ router.delete("/deleteAll", adminMiddleware, deleteAllServices);
 
 /**
  * @swagger
- * /api/services/{id}:
+ * /api/service/{id}:
  *   put:
  *     summary: Update a service (Admin only)
  *     description: Update details of a specific service by ID.
  *     tags: [Services]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

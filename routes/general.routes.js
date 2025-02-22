@@ -52,7 +52,7 @@ router.get("/", getGeneral);
  *     description: Adds general settings to the database. Only accessible by an admin.
  *     tags: [General]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -86,7 +86,7 @@ router.post("/create", adminMiddleware, createGeneral);
  *     description: Update general settings by ID. Only accessible by an admin.
  *     tags: [General]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

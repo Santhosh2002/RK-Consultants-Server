@@ -65,7 +65,7 @@ const router = express.Router();
  *     description: Creates a new user in the system.
  *     tags: [User]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -135,7 +135,7 @@ router.post("/login", login);
  *     description: Retrieve details of the logged-in user.
  *     tags: [User]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     responses:
  *       200:
  *         description: User details retrieved successfully
@@ -158,7 +158,7 @@ router.get("/", getUser);
  *     description: Retrieve details of a user by ID.
  *     tags: [User]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id
@@ -188,7 +188,7 @@ router.get("/:id", adminMiddleware, getUserById);
  *     description: Allows admin to change a user's password.
  *     tags: [User]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -227,7 +227,7 @@ router.put("/change-password", adminMiddleware, changePassword);
  *     description: Removes a user from the system by ID.
  *     tags: [User]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id

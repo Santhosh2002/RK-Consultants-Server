@@ -26,7 +26,7 @@ const router = require("express").Router();
 
 /**
  * @swagger
- * /api/listings:
+ * /api/listing:
  *   get:
  *     summary: Get all visible listings
  *     description: Retrieve a list of visible listings.
@@ -50,13 +50,13 @@ router.get("/", getVisibleListing);
 
 /**
  * @swagger
- * /api/listings/all:
+ * /api/listing/all:
  *   get:
  *     summary: Get all listings (Admin only)
  *     description: Retrieve a list of all listings, including hidden ones.
  *     tags: [Listings]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     responses:
  *       200:
  *         description: A list of all listings
@@ -78,7 +78,7 @@ router.get("/all", adminMiddleware, getListing);
 
 /**
  * @swagger
- * /api/listings/{id}:
+ * /api/listing/{id}:
  *   get:
  *     summary: Get listing details
  *     description: Retrieve details of a specific listing by ID.
@@ -109,13 +109,13 @@ router.get("/:id", getListingDetails);
 
 /**
  * @swagger
- * /api/listings/create:
+ * /api/listing/create:
  *   post:
  *     summary: Create a new listing (Admin only)
  *     description: Adds a new listing to the database.
  *     tags: [Listings]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     requestBody:
  *       required: true
  *       content:
@@ -140,13 +140,13 @@ router.post("/create", adminMiddleware, createListing);
 
 /**
  * @swagger
- * /api/listings/update/{id}:
+ * /api/listing/update/{id}:
  *   put:
  *     summary: Update a listing (Admin only)
  *     description: Update details of a specific listing by ID.
  *     tags: [Listings]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id
@@ -180,13 +180,13 @@ router.put("/update/:id", adminMiddleware, updateListings);
 
 /**
  * @swagger
- * /api/listings/delete/{id}:
+ * /api/listing/delete/{id}:
  *   delete:
  *     summary: Delete a listing (Admin only)
  *     description: Remove a specific listing by ID.
  *     tags: [Listings]
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []  # 🔒 Requires authentication
  *     parameters:
  *       - in: path
  *         name: id
