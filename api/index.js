@@ -16,6 +16,7 @@ const listingRoutes = require("../routes/listing.routes");
 const mailRoutes = require("../routes/mail.routes");
 const bodyParser = require("body-parser");
 const paymentRoutes = require("../routes/payment.routes");
+const contactRoutes = require("../routes/contact.routes");
 dotenv.config();
 const port = process.env.PORT || 3000;
 app.use(
@@ -52,6 +53,7 @@ app.use("/api/general", generalRoutes);
 app.use("/api/listing", listingRoutes);
 app.use("/api/mail", mailRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/contact", contactRoutes);
 swaggerDocs(app);
 
 // app.listen(port, () => console.log(`App listening on port ${port}!`));
