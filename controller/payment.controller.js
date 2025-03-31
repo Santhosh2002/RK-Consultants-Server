@@ -104,3 +104,45 @@ exports.verifyPayments = async (req, res) => {
     });
   }
 };
+// ✅ Get All Payments
+exports.getAllPayments = async (req, res) => {
+  try {
+    const payments = await Payment.find().populate("clientId", "name email");
+
+    res.status(200).json({ success: true, payments });
+  } catch (error) {
+    console.error(`Error fetching payments: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch payments",
+      error: error.message,
+    });
+  }
+};
+
+// ✅ Get Payment by ID
+exports.getPaymentById = async (req, res) => {
+  try {
+    const paymentId = req.params.id;
+
+    const payment = await Payment.findById(paymentId).populate(
+      "clientId",
+      "name email"
+    );
+
+    if (!payment) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Payment not found" });
+    }
+
+    res.status(200).json({ success: true, payment });
+  } catch (error) {
+    console.error(`Error fetching payment: ${error.message}`);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch payment",
+      error: error.message,
+    });
+  }
+};

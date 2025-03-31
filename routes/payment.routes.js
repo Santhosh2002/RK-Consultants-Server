@@ -1,6 +1,8 @@
 const {
   createOrders,
   verifyPayments,
+  getAllPayments,
+  getPaymentById,
 } = require("../controller/payment.controller");
 const express = require("express");
 const router = express.Router();
@@ -138,5 +140,64 @@ router.post("/create-order", createOrders);
  */
 
 router.post("/verify", verifyPayments);
+/**
+ * @swagger
+ * /api/payment/list:
+ *   get:
+ *     summary: Get all payments
+ *     description: Retrieves a list of all payment records from the database.
+ *     tags: [Payments]
+ *     responses:
+ *       200:
+ *         description: Payments retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 payments:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/Payment"
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/list", getAllPayments);
 
+/**
+ * @swagger
+ * /api/payment/{id}:
+ *   get:
+ *     summary: Get payment by ID
+ *     description: Retrieves a specific payment record by ID.
+ *     tags: [Payments]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The ID of the payment to retrieve
+ *     responses:
+ *       200:
+ *         description: Payment retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 payment:
+ *                   $ref: "#/components/schemas/Payment"
+ *       404:
+ *         description: Payment not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/:id", getPaymentById);
 module.exports = router;

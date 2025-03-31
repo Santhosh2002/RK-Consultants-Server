@@ -5,6 +5,8 @@ const {
   getProject,
   updateProject,
   deleteProject,
+  getProjectBySlug,
+  searchProjects,
 } = require("../controller/projects.controller");
 const adminMiddleware = require("../middleware/admin.middleware");
 const router = express.Router();
@@ -99,6 +101,109 @@ router.post("/create", adminMiddleware, createProject);
  */
 router.get("/", getAllProjects);
 
+/**
+ * @swagger
+ * /api/project/slug/{slug}:
+ *   get:
+ *     summary: Get project by slug
+ *     description: Retrieve project details using the SEO-friendly slug.
+ *     tags: [Projects]
+ *     parameters:
+ *       - in: path
+ *         name: slug
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The unique slug of the project
+ *     responses:
+ *       200:
+ *         description: Project retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Project"
+ *       404:
+ *         description: Project not found
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/slug/:slug", getProjectBySlug);
+/**
+ * @swagger
+ * /api/project/search:
+ *   get:
+ *     summary: Search projects
+ *     description: Search for projects using filters like location, price range, property type, etc. Supports pagination.
+ *     tags: [Projects]
+ *     parameters:
+ *       - in: query
+ *         name: keyword
+ *         schema:
+ *           type: string
+ *         description: Free text search in title, description, nearby, etc.
+ *       - in: query
+ *         name: location
+ *         schema:
+ *           type: string
+ *         description: City name
+ *       - in: query
+ *         name: propertyType
+ *         schema:
+ *           type: string
+ *           enum: [Apartment, Villa, Office, Land, Shop, Other]
+ *         description: Type of property
+ *       - in: query
+ *         name: minPrice
+ *         schema:
+ *           type: integer
+ *         description: Minimum price
+ *       - in: query
+ *         name: maxPrice
+ *         schema:
+ *           type: integer
+ *         description: Maximum price
+ *       - in: query
+ *         name: buildYear
+ *         schema:
+ *           type: string
+ *           format: year
+ *         description: Filter projects created in this year
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Number of results per page
+ *     responses:
+ *       200:
+ *         description: Filtered project results
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 page:
+ *                   type: integer
+ *                 limit:
+ *                   type: integer
+ *                 totalPages:
+ *                   type: integer
+ *                 totalResults:
+ *                   type: integer
+ *                 projects:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/Project"
+ *       500:
+ *         description: Internal Server Error
+ */
+router.get("/search", searchProjects);
 /**
  * @swagger
  * /api/project/{id}:

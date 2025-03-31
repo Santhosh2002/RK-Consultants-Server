@@ -170,14 +170,51 @@ const listingSchema = new mongoose.Schema(
 );
 
 // Auto-generate a slug from the title
-listingSchema.pre("save", function (next) {
-  if (this.title) {
-    this.slug = this.title
-      .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "");
+listingSchema.pre("save", async function (next) {
+  try {
+    const Listing = mongoose.model("Listing");
+
+    // Only generate slug if relevant fields changed or slug is missing
+    if (
+      this.isModified("title") ||
+      this.isModified("propertyType") ||
+      this.isModified("location.city") ||
+      !this.slug
+    ) {
+      const titlePart = this.title
+        .toLowerCase()
+        .trim()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
+
+      const propertyPart = this.propertyType
+        ? this.propertyType.toLowerCase().replace(/ /g, "-")
+        : "property";
+
+      const cityPart = this.location?.city
+        ? this.location.city.toLowerCase().replace(/ /g, "-")
+        : "city";
+
+      let baseSlug = `${titlePart}-${propertyPart}-${cityPart}`;
+      let slug = baseSlug;
+      let count = 1;
+
+      while (
+        await Listing.exists({
+          slug: slug,
+          _id: { $ne: this._id },
+        })
+      ) {
+        slug = `${baseSlug}-${count++}`;
+      }
+
+      this.slug = slug;
+    }
+
+    next();
+  } catch (err) {
+    next(err);
   }
-  next();
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
