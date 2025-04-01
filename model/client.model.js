@@ -19,6 +19,10 @@ const clientSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    companyLogo: {
+      type: String, // URL for the profile or logo
+      default: "",
+    },
     website: {
       type: String,
       default: "",
