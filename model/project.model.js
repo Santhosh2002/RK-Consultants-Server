@@ -52,13 +52,19 @@ const projectSchema = new mongoose.Schema(
     },
     propertyType: {
       type: String,
-      enum: ["Apartment", "Villa", "Office", "Land", "Shop", "Other"],
-      default: "Apartment",
+      enum: ["Residential", "Commercial", "MAHA RERA", "Land", "Shop", "Other"],
+      default: "Residential",
     },
+    occupationCertificate: {
+      type: String,
+      enum: ["Yes", "No", "Yes - But up to some floors"],
+      default: "No",
+    },
+
     transactionType: {
       type: String,
-      enum: ["Rent", "Sale"],
-      default: "Rent",
+      enum: ["Lease", "Sale", "Both", "Other"],
+      default: "Lease",
     },
     furnishingStatus: {
       type: String,
@@ -71,8 +77,10 @@ const projectSchema = new mongoose.Schema(
       default: "Available",
     },
     ownership: {
-      type: String,
-      default: "Not Disclosed",
+      // Geo-coordinates for map
+      name: { type: String, default: "" },
+      email: { type: String, default: "" },
+      number: { type: String, default: "" },
     },
     landmark: {
       type: String,
@@ -91,7 +99,15 @@ const projectSchema = new mongoose.Schema(
     ],
     parking: {
       type: String,
-      default: "",
+      enum: [
+        "Covered Stilt",
+        "Covered Garage",
+        "Open Fixed",
+        "Open Not Fixed",
+        "Mechanical",
+        "None",
+      ],
+      default: "None",
     },
     location: {
       // Geo-coordinates for map
@@ -101,6 +117,29 @@ const projectSchema = new mongoose.Schema(
       country: { type: String, default: "" },
       latitude: { type: Number, default: null },
       longitude: { type: Number, default: null },
+    },
+    approval: {
+      type: String,
+      enum: ["Pending", "Approved", "Rejected"],
+      default: "Pending",
+    },
+    buildingAge: {
+      type: String,
+      enum: [
+        "Under Construction",
+        "Less than 5 years",
+        "5 years - 10 years",
+        "More than 10 years",
+      ],
+      default: "Under Construction",
+    },
+    elevator: {
+      type: Boolean,
+      default: false,
+    },
+    commissionAgreement: {
+      type: String,
+      default: "",
     },
 
     // 🔹 NEW: Multiple Property Variants Support
@@ -126,7 +165,6 @@ const projectSchema = new mongoose.Schema(
         },
         balcony: { type: Number, default: 0 },
         floor: { type: String, default: "Ground Floor" },
-
         totalFloors: { type: String, default: "Not Specified" },
         availability: { type: Boolean, default: true }, // Available or Not
       },
