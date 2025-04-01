@@ -28,18 +28,24 @@ const listingSchema = new mongoose.Schema(
         default: [],
       },
     ],
-    video: {
-      type: String, // Video tour URL
-      default: "",
-    },
-    virtualTour: {
-      type: String, // 3D Virtual tour link
-      default: "",
-    },
-    brochure: {
-      type: String, // URL of the downloadable brochure (PDF, DOC, etc.)
-      default: "",
-    },
+    video: [
+      {
+        type: String, // URL of video
+        default: [],
+      },
+    ],
+    virtualTour: [
+      {
+        type: String, // URL of virtualTour
+        default: [],
+      },
+    ],
+    brochure: [
+      {
+        type: String, // URL of brochure
+        default: [],
+      },
+    ],
     visible: {
       type: Boolean,
       default: true,

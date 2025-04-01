@@ -35,10 +35,14 @@ const testimonialSchema = new mongoose.Schema(
         type: String, // Optional field to store avatar URL if needed
         default: "",
       },
-    },
-    showMoreLink: {
-      type: String,
-      default: "",
+      companyName: {
+        type: String,
+        default: "",
+      },
+      companyLogo: {
+        type: String, // URL for the profile or logo
+        default: "",
+      },
     },
   },
   {
